@@ -148,7 +148,7 @@ class Optimizer_SGD:
         if self.momentum:
             
             #check if layer has attribute "momentum"
-            if not hasattr(layer, 'weight_momentums'):
+            if not hasattr(layer, 'Wx_momentums'):
                 layer.Wx_momentums     = np.zeros_like(layer.Wx)
                 layer.Wy_momentums     = np.zeros_like(layer.Wy)
                 layer.Wh_momentums     = np.zeros_like(layer.Wh)
