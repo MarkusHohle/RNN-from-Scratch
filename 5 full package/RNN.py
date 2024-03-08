@@ -77,8 +77,11 @@ def ApplyMyRNN(X_t,rnn):
     ht    = H[0]
     H     = [np.zeros((rnn.n_neurons,1)) for t in range(T+1)]
     
+    #calling instances of activation function as expected by cell
+    ACT   = [rnn.ACT[0] for i in range(T)]
+    
     #we need only the forward part
-    [_,_,Y_hat]  = rnn.RNNCell(X_t, ht, rnn.ACT, H, Y_hat)
+    [_,_,Y_hat]  = rnn.RNNCell(X_t, ht, ACT, H, Y_hat)
     
     plt.plot(X_t, Y_hat)
     plt.legend(['$\hat{y}$'])

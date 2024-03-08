@@ -18,9 +18,9 @@ plt.show()
 
 from RNN import *
 
-rnn = RunMyRNN(X_t,Y_t, Tanh(), n_epoch = 3000)
+rnn = RunMyRNN(X_t,Y_t, Tanh(), n_epoch = 300)
 
-X_new = np.arange(0,20,0.3)
+X_new = np.arange(0,20,0.05)
 X_new = X_new.reshape(len(X_new),1)
 
 Y_hat = ApplyMyRNN(X_new,rnn)
