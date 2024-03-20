@@ -70,7 +70,7 @@ class RNN():
         return(ACT,H,Y_hat)
     
     
-    def backward(self, dinputs):
+    def backward(self, dvalues):
         
         #dY = dinputs
         
@@ -86,14 +86,14 @@ class RNN():
         Wy      = self.Wy
         Wh      = self.Wh
         
-        dht     = np.dot(Wy.T,dinputs[-1].reshape(1,1))
+        dht     = np.dot(Wy.T, dvalues[-1].reshape(1,1))
         
         dbiases = self.dbiases
         
         #actual BPTT
         for t in reversed(range(T)):
             
-            dy = dinputs[t].reshape(1,1)
+            dy = dvalues[t].reshape(1,1)
             xt = X_t[t].reshape(1,1)
             
             ACT[t].backward(dht)
@@ -104,7 +104,7 @@ class RNN():
             dWh     += np.dot(H[t],dtanh.T)
             dbiases += dtanh
             
-            dht = np.dot(Wh, dtanh)
+            dht = np.dot(Wh, dtanh) + np.dot(Wy.T,dvalues[t].reshape(1,1))
 
         self.dWx     = dWx
         self.dWy     = dWy
