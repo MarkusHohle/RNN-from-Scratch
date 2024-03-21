@@ -190,7 +190,7 @@ class RNN():
             dWh     += np.dot(H[t],dtanh.T)
             dbiases += dtanh
             
-            dht = np.dot(Wh, dtanh) + np.dot(Wy.T,dvalues[t].reshape(1,1))
+            dht = np.dot(Wh, dtanh) + np.dot(Wy.T,dy)
 
         self.dWx     = dWx
         self.dWy     = dWy
